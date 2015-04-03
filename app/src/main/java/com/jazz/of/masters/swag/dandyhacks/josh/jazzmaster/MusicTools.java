@@ -1,13 +1,11 @@
 package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * Created by Josh on 4/3/2015.
  */
 public class MusicTools {
-    String[] n ={"A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
+    String[] n ={"A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
     ArrayList<String> notes =new ArrayList<>();
     int[] maj = {4,7};
     int[] min = {3,7};
