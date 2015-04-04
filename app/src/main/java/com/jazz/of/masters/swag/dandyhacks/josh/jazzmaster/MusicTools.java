@@ -5,8 +5,8 @@ import java.util.HashMap;
  * Created by Josh on 4/3/2015.
  */
 public class MusicTools {
-    String[] n ={"A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
-    ArrayList<String> notes =new ArrayList<>();
+    String[] n ={"C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B"};
+    private ArrayList<String> notes =new ArrayList<>();
     int[] maj = {4,7};
     int[] min = {3,7};
     int[] dim= {3,6};
@@ -25,6 +25,32 @@ public class MusicTools {
         for (String s: n)
             notes.add(s);
         make();
+    }
+    public ArrayList<String> getWhites()
+    {
+        ArrayList<String> whites = new ArrayList<>();
+        for(int i = 0; i<n.length; i++){
+            if (n[i].length()<2){
+                whites.add(n[i]);
+            }
+
+        }
+        return whites;
+    }
+    public ArrayList<String> getBlacks()
+    {
+        ArrayList<String> blacks = new ArrayList<>();
+        for(int i = 0; i<n.length; i++){
+            if (!(n[i].length()<2)){
+                blacks.add(n[i]);
+            }
+
+        }
+        return blacks;
+    }
+    public ArrayList<String> getNotes()
+    {
+        return notes;
     }
     public void make()
     {
