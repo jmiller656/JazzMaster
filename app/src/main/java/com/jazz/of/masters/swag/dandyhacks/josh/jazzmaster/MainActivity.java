@@ -5,9 +5,13 @@ import android.content.ClipData;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +26,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -35,9 +44,17 @@ public class MainActivity extends ActionBarActivity {
     private MusicTools tools= new MusicTools();
     private ArrayList<String> progression = new ArrayList<>();
     private int pos = 0;
+    private MediaPlayer mp= new MediaPlayer();
+    private ArrayList<File> files = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.reset();
+            }
+        });
         w = new ArrayList<>();
         b = new ArrayList<>();
         for(int i: whitekeys){
@@ -55,10 +72,28 @@ public class MainActivity extends ActionBarActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         getKeys();
+        makeFiles();
     }
 
-    public void getKeys()
-    {
+    public void makeFiles(){
+        for(int i = 0; i<24; i++){
+            int[] j = {i};
+            files.add(MidiTask.makeMidiFile(getApplicationContext(), j, i + ""));
+        }
+        int j;
+        for(j = 0; j<24;j++){
+            final int finalJ = j;
+            keys.get(j).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(files.get(finalJ)));
+                    mp.start();
+                }
+            });
+        }
+    }
+
+    public void getKeys(){
         keys.add((ImageButton)findViewById(R.id.key1));
         keys.add((ImageButton)findViewById(R.id.key2));
         keys.add((ImageButton)findViewById(R.id.key3));
@@ -101,11 +136,14 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.darudesandstorm);
+            mediaPlayer.start();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     public void add(View view){
         String root;
         String chord;
@@ -138,14 +176,16 @@ public class MainActivity extends ActionBarActivity {
         if(pos-1>=0){
             prev.setText(progression.get(pos-1));
         }
+        playNote(chd);
         //Toast.makeText(getApplicationContext(),"Root: " + root + " Chord: " + chord, Toast.LENGTH_SHORT).show();
     }
+
     public void highlightKey(int i)
     {
         keys.get(i).setBackgroundColor(Color.parseColor("#0080FF"));
     }
-    public void resetKeys()
-    {
+
+    public void resetKeys(){
         for(int i = 0; i<keys.size();i++){
             if(w.contains(i)){
                 keys.get(i).setBackground(getResources().getDrawable(R.drawable.white_selector));
@@ -155,6 +195,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
+
     public void remove(View view){
         if(progression.size()>0){
         progression.remove(pos);
@@ -200,6 +241,7 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"No chords to remove", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void previous(View view){
         if(pos-1 >= 0){
             resetKeys();
@@ -223,6 +265,7 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"No previous chord exists",Toast.LENGTH_SHORT).show();
         }
     }
+
     public void next(View view){
         if(progression.size()-pos>=2){
             resetKeys();
@@ -245,5 +288,10 @@ public class MainActivity extends ActionBarActivity {
         else{
             Toast.makeText(getApplicationContext(),"No next chord exists",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void playNote(int[] chord){
+        mp = MediaPlayer.create(this,Uri.fromFile(MidiTask.makeMidi(getApplicationContext(),chord)));
+        mp.start();
     }
 }
