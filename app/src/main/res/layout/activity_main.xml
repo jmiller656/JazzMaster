@@ -7,9 +7,132 @@
         android:weightSum="2"
         android:orientation="vertical">
     <LinearLayout
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="32">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="7">
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A#"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="B"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="C"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="C#"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="D"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="D#"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="E"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="F"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="F#"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="G"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="G#"/>
+                </RadioGroup>
+        </ScrollView>
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="7">
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Major"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Minor"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Diminished"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sus2"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sus4"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Augmented"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Maj6"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Min6"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Maj7"/>
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Min7"/>
+            </RadioGroup>
+            </ScrollView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="18">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                </LinearLayout>
+        </RelativeLayout>
+
     </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -111,9 +234,19 @@
 
 
     </LinearLayout>
-    <LinearLayout
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="4">
+        <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="110dp"
+        android:layout_height="fill_parent"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -243,7 +376,12 @@
             android:layout_weight="3.1714285714285714285714285714286"
             android:background="@android:color/transparent"/>
         </LinearLayout>
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="6"></LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
