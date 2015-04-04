@@ -26,6 +26,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.leff.midi.event.SystemExclusiveEvent;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -136,9 +138,22 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.darudesandstorm);
-            mediaPlayer.start();
+            mp = MediaPlayer.create(this,R.raw.darudesandstorm);
+            mp.start();
             return true;
+        }
+        else if(id == R.id.action_progression){
+      //      mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(MidiTask.makeMidiProgressionFile(getApplicationContext(),progression,"prog")));
+      //      mp.start();
+            for(String s: progression){
+                playNote(tools.getchord(s.split(" ")[0], s.split(" ")[1]));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -294,4 +309,5 @@ public class MainActivity extends ActionBarActivity {
         mp = MediaPlayer.create(this,Uri.fromFile(MidiTask.makeMidi(getApplicationContext(),chord)));
         mp.start();
     }
+
 }

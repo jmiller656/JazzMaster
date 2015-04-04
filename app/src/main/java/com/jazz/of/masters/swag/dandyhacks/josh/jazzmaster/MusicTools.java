@@ -16,7 +16,8 @@ public class MusicTools {
     int[] maj6 = {4,7,9};
     int[] min6 = {3,7,8};
     int[] maj7= {4,7,11};
-    int[] min7 = {3,7,11};
+    int[] min7 = {3,7,10};
+    int[] seven = {4,7,10};
     HashMap<String,int[]> chords= new HashMap<>();
     public MusicTools()
     {
@@ -62,6 +63,7 @@ public class MusicTools {
         chords.put("Maj7",maj7);
         chords.put("Min6",min6);
         chords.put("Min7",min7);
+        chords.put("Seven",seven);
     }
 
     public int[] getchord(String root, String chord)
