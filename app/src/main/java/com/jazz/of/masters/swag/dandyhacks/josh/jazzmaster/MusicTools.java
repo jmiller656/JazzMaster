@@ -72,7 +72,7 @@ public class MusicTools {
             if (i==0)
                 c[i]=notes.indexOf(root);
             else
-                c[i]=intervals[i-1];
+                c[i]=intervals[i-1]+notes.indexOf(root);
         }
         return c;
     }
