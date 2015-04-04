@@ -124,13 +124,67 @@
             android:layout_height="fill_parent"
             android:layout_weight="18">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
 
-                </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:id="@+id/Remove"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Add"
+                android:layout_above="@id/Remove"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Previous"
+                android:layout_toLeftOf="@id/Remove"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Next"
+                android:layout_toRightOf="@id/Remove"/>
+            <TextView
+                android:id="@+id/currentChord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_above="@id/add"
+                android:text="CMaj7"/>
+            <TextView
+                android:id="@+id/Previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingRight="50dp"
+                android:text="Gsus4"
+                android:layout_toLeftOf="@id/currentChord"
+                android:layout_above="@id/add"/>
+            <TextView
+                android:id="@+id/Next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="50dp"
+                android:text="Dmin7"
+                android:layout_toRightOf="@id/currentChord"
+                android:layout_above="@id/add"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Chord:"
+                android:layout_above="@id/currentChord"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="20dp"
+                />
         </RelativeLayout>
 
     </LinearLayout>
