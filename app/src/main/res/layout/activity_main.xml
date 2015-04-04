@@ -19,7 +19,8 @@
             android:layout_weight="7">
             <RadioGroup
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:id="@+id/notes">
                 <RadioButton
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -76,7 +77,8 @@
             android:layout_weight="7">
             <RadioGroup
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:id="@+id/chords">
                 <RadioButton
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -131,26 +133,38 @@
                 android:text="Remove"
                 android:id="@+id/Remove"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:onClick="remove"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
             <Button
+                android:minHeight="0dp"
+                android:minWidth="0dp"
                 android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Add"
-                android:layout_above="@id/Remove"/>
+                android:layout_above="@id/Remove"
+                android:onClick="add"/>
             <Button
+                android:minHeight="0dp"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="Previous"
-                android:layout_toLeftOf="@id/Remove"/>
+                android:layout_toLeftOf="@id/Remove"
+                android:onClick="previous"/>
             <Button
+                android:minHeight="0dp"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="Next"
-                android:layout_toRightOf="@id/Remove"/>
+                android:layout_toRightOf="@id/Remove"
+                android:onClick="next"/>
             <TextView
                 android:id="@+id/currentChord"
                 android:layout_width="wrap_content"
@@ -158,14 +172,17 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_above="@id/add"
-                android:text="CMaj7"/>
+                android:textSize="12pt"
+                android:paddingBottom="10dp"
+                android:textColor="#0080FF"
+                android:text=""/>
             <TextView
                 android:id="@+id/Previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingRight="50dp"
-                android:text="Gsus4"
+                android:text=""
                 android:layout_toLeftOf="@id/currentChord"
                 android:layout_above="@id/add"/>
             <TextView
@@ -174,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingLeft="50dp"
-                android:text="Dmin7"
+                android:text=""
                 android:layout_toRightOf="@id/currentChord"
                 android:layout_above="@id/add"/>
             <TextView
@@ -184,7 +201,9 @@
                 android:layout_above="@id/currentChord"
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="20dp"
-                />
+                android:id="@+id/cclabel"
+                android:textColor="#ff000000"
+                android:textSize="14pt"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -206,85 +225,92 @@
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key1"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key3"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key5"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key6"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key8"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key10"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
+            android:id="@+id/key12"
             />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key13"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key15"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key17"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key18"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key20"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key22"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="7.1428571428571428571428571428571"
             android:background="@drawable/white_selector"
-            />
+            android:id="@+id/key24"/>
 
 
     </LinearLayout>
@@ -308,12 +334,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="4.4714285714285714285714285714286"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key2"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -323,7 +351,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key4"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -339,7 +368,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key7"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -351,7 +381,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key9"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -361,7 +392,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key11"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -376,7 +408,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key14"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -386,7 +419,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key16"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -401,7 +435,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key19"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -413,7 +448,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key21"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -423,7 +459,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5.3571428571428571428571428571428"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:id="@+id/key23"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"

@@ -52,29 +52,28 @@ public class MusicTools {
     }
     public void make()
     {
-        chords.put("maj",maj);
-        chords.put("min",min);
-        chords.put("dim",dim);
-        chords.put("sus2",sus2);
-        chords.put("sus4",sus4);
-        chords.put("aug",aug);
-        chords.put("maj6",maj6);
-        chords.put("maj7",maj7);
-        chords.put("min6",min6);
-        chords.put("min7",min7);
+        chords.put("Major",maj);
+        chords.put("Minor",min);
+        chords.put("Diminished",dim);
+        chords.put("Sus2",sus2);
+        chords.put("Sus4",sus4);
+        chords.put("Augmented",aug);
+        chords.put("Maj6",maj6);
+        chords.put("Maj7",maj7);
+        chords.put("Min6",min6);
+        chords.put("Min7",min7);
     }
 
-    public Chord getchord(String root, String chord)
+    public int[] getchord(String root, String chord)
     {
-        ArrayList<String> ch= new ArrayList<>();
         int[] intervals = chords.get(chord);
-        ch.add(root);
-        for (int i = 0; i<intervals.length;i++){
-            int j = notes.indexOf(root);
-            j += intervals[i];
-            ch.add(notes.get(j));
-            }
-        Chord c = new Chord((String[])ch.toArray());
+        int[] c = new int[intervals.length+1];
+        for (int i = 0; i<c.length;i++){
+            if (i==0)
+                c[i]=notes.indexOf(root);
+            else
+                c[i]=intervals[i-1];
+        }
         return c;
     }
 }

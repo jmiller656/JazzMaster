@@ -4,7 +4,7 @@
     android:layout_height="10dp"
     android:padding="6dip">
     <TextView
-        android:background="@drawable/white"
+        android:background="#fff"
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="10dp"
