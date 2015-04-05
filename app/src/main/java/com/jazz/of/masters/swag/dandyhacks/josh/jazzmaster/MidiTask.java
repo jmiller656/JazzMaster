@@ -55,7 +55,7 @@ public class MidiTask {
     public static File makeMidiFile(Context context, int[]chord,String name){
         MidiTrack tempo = new MidiTrack();
         int c = 0;
-        int v = 400;
+        int v = 100;
         ArrayList<MidiTrack> midiTracks = new ArrayList<>();
         //MAKE TEMPO
         TimeSignature ts = new TimeSignature();
@@ -69,7 +69,7 @@ public class MidiTask {
         for(int i=0; i<chord.length;i++){
             MidiTrack midiTrack = new MidiTrack();
             NoteOn noteOn= new NoteOn(480,c,60+chord[i],v);
-            NoteOff noteOff = new NoteOff(480+ 100,c,60+chord[i],0);
+            NoteOff noteOff = new NoteOff(480+ 300,c,60+chord[i],0);
             midiTrack.insertEvent(noteOn);
             midiTrack.insertEvent(noteOff);
             midiTracks.add(midiTrack);
