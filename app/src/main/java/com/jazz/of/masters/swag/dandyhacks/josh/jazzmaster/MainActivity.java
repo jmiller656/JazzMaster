@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -51,10 +52,26 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mp.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+        mp.setLooping(false);
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                if(mp.isPlaying()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                mp.prepareAsync();
+            }
+        });
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                mp.reset();
+                mp.release();
+                mp = null;
             }
         });
         w = new ArrayList<>();
@@ -89,7 +106,8 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(files.get(finalJ)));
-                    mp.start();
+                    MusicThread m = new MusicThread(mp);
+                    m.start();
                 }
             });
         }
@@ -139,12 +157,13 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             mp = MediaPlayer.create(this,R.raw.darudesandstorm);
-            mp.start();
+            MusicThread m = new MusicThread(mp);
+            m.start();
             return true;
         }
         else if(id == R.id.action_progression){
       //      mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(MidiTask.makeMidiProgressionFile(getApplicationContext(),progression,"prog")));
-      //      mp.start();
+      //      MusicThread m = new MusicThread(mp);();
             for(String s: progression){
                 playNote(tools.getchord(s.split(" ")[0], s.split(" ")[1]));
                 try {
@@ -154,6 +173,12 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
 
+        }
+        else if(id == R.id.action_danger){
+            mp = MediaPlayer.create(this,R.raw.danger);
+            MusicThread m = new MusicThread(mp);
+            m.start();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -192,8 +217,7 @@ public class MainActivity extends ActionBarActivity {
             prev.setText(progression.get(pos-1));
         }
         playNote(chd);
-        //Toast.makeText(getApplicationContext(),"Root: " + root + " Chord: " + chord, Toast.LENGTH_SHORT).show();
-    }
+       }
 
     public void highlightKey(int i)
     {
@@ -307,7 +331,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void playNote(int[] chord){
         mp = MediaPlayer.create(this,Uri.fromFile(MidiTask.makeMidi(getApplicationContext(),chord)));
-        mp.start();
+        MusicThread m = new MusicThread(mp);
+        m.start();
     }
 
 }

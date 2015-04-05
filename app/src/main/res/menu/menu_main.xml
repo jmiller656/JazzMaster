@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="Special Surprise"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_danger" android:title="Dangerous Surprise"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_progression" android:title="Play Progression"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
