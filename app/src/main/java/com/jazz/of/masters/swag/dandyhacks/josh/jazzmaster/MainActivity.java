@@ -1,39 +1,21 @@
 package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
 
-import android.app.ActionBar;
-import android.content.ClipData;
-import android.database.DataSetObserver;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leff.midi.event.SystemExclusiveEvent;
-
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -54,24 +36,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         mp.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         mp.setLooping(false);
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                if(mp.isPlaying()){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mp.prepareAsync();
-            }
-        });
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.release();
-                mp = null;
             }
         });
         w = new ArrayList<>();
@@ -149,12 +117,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             mp = MediaPlayer.create(this,R.raw.darudesandstorm);
             MusicThread m = new MusicThread(mp);
@@ -162,8 +125,6 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         else if(id == R.id.action_progression){
-      //      mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(MidiTask.makeMidiProgressionFile(getApplicationContext(),progression,"prog")));
-      //      MusicThread m = new MusicThread(mp);();
             for(String s: progression){
                 playNote(tools.getchord(s.split(" ")[0], s.split(" ")[1]));
                 try {
@@ -172,7 +133,6 @@ public class MainActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
             }
-
         }
         else if(id == R.id.action_danger){
             mp = MediaPlayer.create(this,R.raw.danger);
@@ -180,7 +140,6 @@ public class MainActivity extends ActionBarActivity {
             m.start();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
