@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by Josh on 4/4/2015.
  */
 public class MidiTask {
-    private static MusicTools tools= new MusicTools();
+    //private static MusicTools tools= new MusicTools();
     public static File makeMidi(Context context, int[]chord){
         MidiTrack tempo = new MidiTrack();
         int c = 0;
