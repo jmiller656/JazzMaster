@@ -207,7 +207,8 @@
                 android:paddingBottom="20dp"
                 android:id="@+id/cclabel"
                 android:textColor="#ff000000"
-                android:textSize="14pt"/>
+                android:textSize="13pt"
+                android:textIsSelectable="false" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -175,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
 
         }
         else if(id == R.id.action_danger){
-            mp = MediaPlayer.create(this,R.raw.danger);
+            mp = MediaPlayer.create(this,R.raw.darudesandstorm);
             MusicThread m = new MusicThread(mp);
             m.start();
             return true;
@@ -217,7 +217,8 @@ public class MainActivity extends ActionBarActivity {
             prev.setText(progression.get(pos-1));
         }
         playNote(chd);
-       }
+        //Toast.makeText(getApplicationContext(),"Root: " + root + " Chord: " + chord, Toast.LENGTH_SHORT).show();
+    }
 
     public void highlightKey(int i)
     {
