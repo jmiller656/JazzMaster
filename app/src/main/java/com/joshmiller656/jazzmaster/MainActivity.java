@@ -1,39 +1,24 @@
-package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
+package com.joshmiller656.jazzmaster;
 
-import android.app.ActionBar;
-import android.content.ClipData;
-import android.database.DataSetObserver;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leff.midi.event.SystemExclusiveEvent;
-
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -43,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<Integer> w,b;
     private ArrayList<ImageButton> keys = new ArrayList<>();
     private RadioGroup n,c;
+    private Handler mhandler;
     private TextView current,next,prev;
     private MusicTools tools= new MusicTools();
     private ArrayList<String> progression = new ArrayList<>();
@@ -52,6 +38,19 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mhandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case 0:
+                        resetKeys();
+                        break;
+                    case 1:
+                        highlightKey(msg.arg1);
+                        break;
+                }
+            }
+        };
         mp.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         mp.setLooping(false);
         mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -102,12 +101,14 @@ public class MainActivity extends ActionBarActivity {
         int j;
         for(j = 0; j<24;j++){
             final int finalJ = j;
-            keys.get(j).setOnClickListener(new View.OnClickListener() {
+            keys.get(j).setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction()==MotionEvent.ACTION_DOWN|| event.getAction()== MotionEvent.ACTION_SCROLL){
                     mp = MediaPlayer.create(getApplicationContext(),Uri.fromFile(files.get(finalJ)));
                     MusicThread m = new MusicThread(mp);
-                    m.start();
+                    m.start();}
+                    return false;
                 }
             });
         }
@@ -166,6 +167,8 @@ public class MainActivity extends ActionBarActivity {
       //      MusicThread m = new MusicThread(mp);();
             for(String s: progression){
                 playNote(tools.getchord(s.split(" ")[0], s.split(" ")[1]));
+                //KeyThread k = new KeyThread(tools.getchord(s.split(" ")[0], s.split(" ")[1]),mhandler);
+                //k.start();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -330,7 +333,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void playNote(int[] chord){
-        mp = MediaPlayer.create(this,Uri.fromFile(MidiTask.makeMidi(getApplicationContext(),chord)));
+        mp = MediaPlayer.create(this,Uri.fromFile(MidiTask.makeMidi(getApplicationContext(), chord)));
         MusicThread m = new MusicThread(mp);
         m.start();
     }

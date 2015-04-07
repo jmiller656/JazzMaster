@@ -1,4 +1,4 @@
-package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
+package com.joshmiller656.jazzmaster;
 
 import android.media.MediaPlayer;
 

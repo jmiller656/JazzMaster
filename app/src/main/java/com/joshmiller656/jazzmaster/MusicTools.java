@@ -1,6 +1,7 @@
-package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
+package com.joshmiller656.jazzmaster;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * Created by Josh on 4/3/2015.
  */

@@ -1,4 +1,4 @@
-package com.jazz.of.masters.swag.dandyhacks.josh.jazzmaster;
+package com.joshmiller656.jazzmaster;
 
 import android.content.Context;
 
@@ -55,7 +55,7 @@ public class MidiTask {
     public static File makeMidiFile(Context context, int[]chord,String name){
         MidiTrack tempo = new MidiTrack();
         int c = 0;
-        int v = 100;
+        int v = 80;
         ArrayList<MidiTrack> midiTracks = new ArrayList<>();
         //MAKE TEMPO
         TimeSignature ts = new TimeSignature();
